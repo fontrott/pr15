@@ -1,0 +1,7 @@
+D:\ЖУК ВИЖУАЛ СТУДИО\pr15_ya\bin\Debug\pr15_ya.exe.config
+D:\ЖУК ВИЖУАЛ СТУДИО\pr15_ya\bin\Debug\pr15_ya.exe
+D:\ЖУК ВИЖУАЛ СТУДИО\pr15_ya\bin\Debug\pr15_ya.pdb
+D:\ЖУК ВИЖУАЛ СТУДИО\pr15_ya\obj\Debug\pr15_ya.csproj.AssemblyReference.cache
+D:\ЖУК ВИЖУАЛ СТУДИО\pr15_ya\obj\Debug\pr15_ya.csproj.CoreCompileInputs.cache
+D:\ЖУК ВИЖУАЛ СТУДИО\pr15_ya\obj\Debug\pr15_ya.exe
+D:\ЖУК ВИЖУАЛ СТУДИО\pr15_ya\obj\Debug\pr15_ya.pdb
