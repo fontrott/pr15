@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 class Program
 {
@@ -8,7 +8,16 @@ class Program
         public string specialty;
         public int averageAge;
         public double averageSalary;
-
+        public static int CountSpecialty(Enterprise[] enterprises, string specialty)
+        {
+            int count = 0;
+            foreach (Enterprise enterprise in enterprises)
+            {
+                if (enterprise.specialty == specialty)
+                    count++;
+            }
+            return count;
+        }
         public static void Main(string[] args)
         {
             while (true)
@@ -45,9 +54,7 @@ class Program
                                 }
                             }
                             while (n < 0 || n == 0);
-
                             Enterprise[] enterprises = new Enterprise[n];
-
                             for (int i = 0; i < n; i++)
                             {
                                 Console.WriteLine($"\nВведите информацию о предприятии {i + 1}:");
@@ -64,42 +71,42 @@ class Program
                                 Console.Write("Средний оклад: ");
                                 enterprises[i].averageSalary = double.Parse(Console.ReadLine());
                             }
-
                             Console.WriteLine("\nИнформация о предприятиях:");
-
                             int locksmithCount = 0;
                             int turnerCount = 0;
                             string mostCommonSpecialty = "";
                             int maxSpecialtyCount = 0;
-
-                            for (int i = 0; i < n; i++)
+                            foreach (var enterprise in enterprises)
                             {
-                                Console.WriteLine($"\nПредприятие {i + 1}:");
-                                Console.WriteLine($"Название: {enterprises[i].name}");
-                                Console.WriteLine($"Специальность: {enterprises[i].specialty}");
-                                Console.WriteLine($"Средний возраст сотрудников: {enterprises[i].averageAge}");
-                                Console.WriteLine($"Средний оклад: {enterprises[i].averageSalary}");
-
-                                if (enterprises[i].specialty == "слесарь")
+                                Console.WriteLine("\nПредприятие {0}: ", enterprise.name);
+                                Console.WriteLine("Название {0}: ", enterprise.name);
+                                Console.WriteLine("Специальность {0}: ", enterprise.specialty);
+                                Console.WriteLine("Средний возраст сотрудников {0}: ", enterprise.averageAge);
+                                Console.WriteLine("Средний оклад {0}: ", enterprise.averageSalary);
+                                if (enterprise.specialty == "Слесарь" || enterprise.specialty == "слесарь")
                                     locksmithCount++;
-                                else if (enterprises[i].specialty == "токарь")
+                                else if (enterprise.specialty == "Токарь" || enterprise.specialty == "токарь")
                                     turnerCount++;
-
-                                int specialtyCount = CountSpecialty(enterprises, enterprises[i].specialty);
-                                if (specialtyCount > maxSpecialtyCount)
+                                if (enterprise.specialty != mostCommonSpecialty)
                                 {
-                                    mostCommonSpecialty = enterprises[i].specialty;
-                                    maxSpecialtyCount = specialtyCount;
+                                    var specialtyCount = CountSpecialty(enterprises, enterprise.specialty);
+                                    if (specialtyCount > maxSpecialtyCount)
+                                    {
+                                        maxSpecialtyCount = specialtyCount;
+                                        mostCommonSpecialty = enterprise.specialty;
+                                    }
+                                    else if (specialtyCount == maxSpecialtyCount)
+                                    {
+                                        mostCommonSpecialty = "Нет самой популярной специальности.";
+                                    }
                                 }
                             }
-
                             Console.WriteLine("\nИнформация о количестве слесарей и токарей:");
                             Console.WriteLine($"Количество слесарей: {locksmithCount}");
                             Console.WriteLine($"Количество токарей: {turnerCount}");
-
                             if (locksmithCount == 0 && turnerCount == 0) Console.WriteLine("На предприятиях нет слесарей и токарей.");
-
-                            Console.WriteLine($"\nСамая распространенная специальность:{mostCommonSpecialty}, {mostCommonSpecialty}");
+                            else if (mostCommonSpecialty == "Нет самой популярной специальности.") Console.WriteLine("\nНет самой популярной специальности, так как все специальности по количеству равны между собой.");
+                            else Console.WriteLine($"\nСамая распространенная специальность: {mostCommonSpecialty}");
                             Console.ReadKey();
                         }
                         catch (FormatException fe)
@@ -122,16 +129,6 @@ class Program
                         break;
                 }
             }
-        }
-        public static int CountSpecialty(Enterprise[] enterprises, string specialty)
-        {
-            int count = 0;
-            foreach (Enterprise enterprise in enterprises)
-            {
-                if (enterprise.specialty == specialty)
-                    count++;
-            }
-            return count;
         }
     }
 }
